@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        main {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #1c1c1c;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        
+        .calculator {
+            width: 100%;
+            max-width: 400px;
+            background-color: #1c1c1c;
+            padding: 20px 10px;
+            display: flex;
+            flex-direction: column;
+            user-select: none;
+        }
+
+        
+        .display {
+            width: 100%;
+            color: #ffffff;
+            font-size: 88px;
+            font-weight: 300;
+            text-align: right;
+            padding: 0 16px;
+            margin-bottom: 24px;
+            line-height: 1;
+            letter-spacing: -2px;
+            overflow: hidden;
+            word-wrap: break-word;
+        }
+
+        
+        .keypad {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+        }
+
+       
+        .btn {
+            height: 82px;
+            width: 82px;
+            border-radius: 50%;
+            border: none;
+            outline: none;
+            font-size: 32px;
+            font-weight: 400;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: filter 0.15s ease, transform 0.1s ease;
+        }
+
+        .btn:hover {
+            filter: brightness(1.2);
+        }
+
+        .btn:active {
+            filter: brightness(0.85);
+            transform: scale(0.97);
+        }
+
+        .btn-func {
+            background-color: #a2a2a2;
+            color: #000000;
+            font-size: 30px;
+        }
+
+        .btn-num {
+            background-color: #505050;
+            color: #ffffff;
+        }
+
+        
+        .btn-op {
+            background-color: #ff9500;
+            color: #ffffff;
+            font-size: 36px;
+        }
+
+        
+        .btn-zero {
+            grid-column: span 2;
+            width: 100%;
+            border-radius: 41px;
+            justify-content: flex-start;
+            padding-left: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator">
+        
+        <div class="display" id="display">7744</div>
+
+        
+        <div class="keypad">
+            
+            <button class="btn btn-func" onclick="handleClear()">C</button>
+            <button class="btn btn-func" onclick="handleToggleSign()">+/-</button>
+            <button class="btn btn-func" onclick="handlePercent()">%</button>
+            <button class="btn btn-op" onclick="handleOp('/')">&divide;</button>
+
+            
+            <button class="btn btn-num" onclick="handleNum('7')">7</button>
+            <button class="btn btn-num" onclick="handleNum('8')">8</button>
+            <button class="btn btn-num" onclick="handleNum('9')">9</button>
+            <button class="btn btn-op" onclick="handleOp('*')">&times;</button>
+
+            
+            <button class="btn btn-num" onclick="handleNum('4')">4</button>
+            <button class="btn btn-num" onclick="handleNum('5')">5</button>
+            <button class="btn btn-num" onclick="handleNum('6')">6</button>
+            <button class="btn btn-op" onclick="handleOp('-')">-</button>
+
+            
+            <button class="btn btn-num" onclick="handleNum('1')">1</button>
+            <button class="btn btn-num" onclick="handleNum('2')">2</button>
+            <button class="btn btn-num" onclick="handleNum('3')">3</button>
+            <button class="btn btn-op" onclick="handleOp('+')">+</button>
+
+            
+            <button class="btn btn-num btn-zero" onclick="handleNum('0')">0</button>
+            <button class="btn btn-num" onclick="handleComma()">,</button>
+            <button class="btn btn-op" onclick="handleEqual()">=</button>
+        </div>
+    </div>
+
+
+    <script>
+        const display = document.getElementById('display');
+        let currentInput = '7744';
+        let previousInput = '';
+        let operator = null;
+        let shouldResetDisplay = false;
+
+        function updateDisplay() {
+            display.innerText = currentInput;
+        }
+
+        function handleNum(num) {
+            if (shouldResetDisplay) {
+                currentInput = num;
+                shouldResetDisplay = false;
+            } else {
+                currentInput = (currentInput === '0' || currentInput === '7744') ? num : currentInput + num;
+            }
+            updateDisplay();
+        }
+
+        function handleComma() {
+            if (shouldResetDisplay) {
+                currentInput = '0.';
+                shouldResetDisplay = false;
+            } else if (!currentInput.includes('.')) {
+                currentInput += '.';
+            }
+            updateDisplay();
+        }
+
+        function handleClear() {
+            currentInput = '0';
+            previousInput = '';
+            operator = null;
+            updateDisplay();
+        }
+
+        function handleToggleSign() {
+            currentInput = (parseFloat(currentInput) * -1).toString();
+            updateDisplay();
+        }
+
+        function handlePercent() {
+            currentInput = (parseFloat(currentInput) / 100).toString();
+            updateDisplay();
+        }
+
+        function handleOp(op) {
+            if (operator && !shouldResetDisplay) {
+                handleEqual();
+            }
+            previousInput = currentInput;
+            operator = op;
+            shouldResetDisplay = true;
+        }
+
+        function handleEqual() {
+            if (!operator || !previousInput) return;
+            const prev = parseFloat(previousInput);
+            const curr = parseFloat(currentInput);
+            let result = 0;
+
+            switch (operator) {
+                case '+': result = prev + curr; break;
+                case '-': result = prev - curr; break;
+                case '*': result = prev * curr; break;
+                case '/': result = curr !== 0 ? prev / curr : 'Error'; break;
+            }
+
+            currentInput = result.toString();
+            operator = null;
+            shouldResetDisplay = true;
+            updateDisplay();
+        }
+    </script>
+
+</body>
+</html>

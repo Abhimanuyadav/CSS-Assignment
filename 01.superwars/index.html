@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    
+    <style>
+        main {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Times New Roman", Times, serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            padding-top: 25px;
+        }
+
+        .arena {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            width: 100%;
+            max-width: 950px;
+        }
+
+        .team {
+            display: flex;
+            gap: 16px;
+        }
+
+        
+        .score {
+            font-size: 42px;
+            font-weight: normal;
+            margin: 0 110px;
+            padding-top: 5px;
+            letter-spacing: 2px;
+            user-select: none;
+        }
+
+        
+        .card {
+            width: 125px;
+            height: 205px;
+            background-color: #ffffff;
+            border: 1px solid #d3d3d3;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 8px;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+        }
+
+        .card img {
+            width: 75px;
+            height: 75px;
+            object-fit: contain;
+            margin-top: 4px;
+        }
+
+        .name {
+            font-size: 13px;
+            text-align: center;
+            color: #000000;
+            line-height: 1.25;
+            min-height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .power {
+            font-size: 44px;
+            color: #000000;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="arena">
+        
+        
+        <div class="team">
+            
+            <div class="card">
+                <img src="super-1.png" alt="Spiderman">
+                <div class="name">Spiderman</div>
+                <div class="power">12</div>
+            </div>
+
+           
+            <div class="card">
+                <img src="super-3.png" alt="Wonder Women">
+                <div class="name">Wonder<br>Women</div>
+                <div class="power">30</div>
+            </div>
+        </div>
+
+       
+        <div class="score">5 - 0</div>
+
+       
+        <div class="team">
+            
+            <div class="card">
+                <img src="super-2.png" alt="Captain America">
+                <div class="name">Captain<br>America</div>
+                <div class="power">50</div>
+            </div>
+
+           
+            <div class="card">
+                <img src="super-4.png" alt="Gem Woman">
+                <div class="name">Gem Woman</div>
+                <div class="power">12</div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

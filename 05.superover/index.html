@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Document</title>
+
+    <style>
+        main {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(to bottom, #071629, #102c36, #071c0b);
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            padding: 30px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 80px;
+        }
+
+        .scoreboard {
+            display: flex;
+            justify-content: center;
+            gap: 100px;
+        }
+
+        .team {
+            width: 455px;
+            padding: 45px 20px;
+            border-radius: 20px;
+        }
+
+        .india {
+            background: #1266c3;
+        }
+
+        .pakistan {
+            background: #35b900;
+        }
+
+        h1 {
+            font-size: 80px;
+            margin-bottom: 35px;
+        }
+
+        .runs {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .runs span {
+            background: white;
+            color: black;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 30px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h2 {
+            font-size: 45px;
+            margin-top: 30px;
+        }
+
+        .buttons {
+            margin-top: 80px;
+        }
+
+        button {
+            width: 100px;
+            height: 100px;
+            font-size: 55px;
+            border-radius: 25px;
+            border: 5px solid white;
+            margin: 0 25px;
+            cursor: pointer;
+        }
+
+        .edit {
+            background: orange;
+        }
+
+        .reset {
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="logo">
+            🏏 SUPER<br> OVER
+        </div>
+
+        <div class="scoreboard">
+
+            <div class="team india">
+                <h1>IND</h1>
+
+                <div class="runs">
+                    <span>4</span>
+                    <span>3</span>
+                    <span>2</span>
+                    <span>6</span>
+                    <span>6</span>
+                    <span>6</span>
+                </div>
+
+                <h2>27/0</h2>
+            </div>
+
+            
+            <div class="team pakistan">
+                <h1>PAK</h1>
+
+                <div class="runs">
+                    <span>2</span>
+                    <span>4</span>
+                    <span>0</span>
+                    <span>3</span>
+                    <span>1</span>
+                    <span>4</span>
+                </div>
+
+                <h2>14/0</h2>
+            </div>
+
+        </div>
+
+       
+        <div class="buttons">
+            <button class="edit">🖊️</button>
+            <button class="reset">⟲</button>
+        </div>
+
+    </div>
+
+</body>
+</html>
